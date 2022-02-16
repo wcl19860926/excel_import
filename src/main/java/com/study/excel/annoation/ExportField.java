@@ -47,7 +47,11 @@ public @interface ExportField {
       Class<?  extends  Convertor<?>>  convertor()   default  DEFAULT.class;
 
       
-      
+  	/**
+  	 * 在excel单无格中的水平对齐方试， 大于0  ， 居右，  0： 居中 ； 小于0 居左
+  	 * @return
+  	 */
+  	int  alignment()   default  0;
       
       
       /**

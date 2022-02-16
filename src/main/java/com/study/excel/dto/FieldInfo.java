@@ -7,7 +7,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 
 import org.apache.commons.lang3.StringUtils;
-
+import org.apache.poi.ss.usermodel.CellStyle;
 
 import com.study.excel.convertor.Convertor;
 import com.study.excel.utils.ExcelUtils;
@@ -73,6 +73,13 @@ public class FieldInfo   implements   Comparable<FieldInfo>{
     
     
     private Convertor<?> convertor;
+
+
+    CellStyle  cellStyle;
+
+    private  Integer  alignment;
+
+
 
 
 	public NumberFormat getNumberFormater() {
@@ -151,10 +158,8 @@ public class FieldInfo   implements   Comparable<FieldInfo>{
 
 	public void setDateFormat(String dateFormat) {
 		this.dateFormat = dateFormat;
-		if(dateFormat!=null) {
+		if(StringUtils.isNotEmpty(dateFormat)) {
 			dataFormater  = new SimpleDateFormat(dateFormat);
-		}else {
-			dataFormater  = new SimpleDateFormat(ExcelUtils.DEFAULT_DATE_TIME_PATTERN);
 		}
 	}
 
@@ -164,7 +169,7 @@ public class FieldInfo   implements   Comparable<FieldInfo>{
 
 	public void setNumberFromat(String numberFromat) {
 		this.numberFromat = numberFromat;
-		if(StringUtils.isNotBlank(this.numberFromat)) {
+		if(StringUtils.isNotEmpty(this.numberFromat)) {
 			numberFormater  = new DecimalFormat(numberFromat);
 		}
 	}
@@ -192,5 +197,22 @@ public class FieldInfo   implements   Comparable<FieldInfo>{
 			return  0;
 		}
 		return this.order.compareTo(o.order);
+	}
+
+
+	public CellStyle getCellStyle() {
+		return cellStyle;
+	}
+
+	public void setCellStyle(CellStyle cellStyle) {
+		this.cellStyle = cellStyle;
+	}
+
+	public Integer getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(Integer alignment) {
+		this.alignment = alignment;
 	}
 }
